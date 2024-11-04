@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #scatola1,#scatola2,#scatola3,#scatola4,#scatola5,#scatola6,#scatola7,#scatola8,#scatola9,#scatola10{
+            margin: 50;
+            padding: 50;
+            height: 700;
+            width: 600;
+            border-radius: 30px;
+            border: 6px solid black;
+            border-color: black;
+            justify-content: center;
+            justify-items: center;
+
+
+        }
+        #scatolaa1,#scatolaa2,#scatolaa3,#scatolaa4,#scatolaa5,#scatolaa6,#scatolaa7,#scatolaa8,#scatolaa9,#scatolaa10{
+            margin: 50;
+            padding: 50;
+            height: 700;
+            width: 600;
+            justify-content: center;
+            justify-items: center;
+
+
+        }
+        p{
+            margin: 15px;
+            padding: 15px;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    
+
+    <div id="scatola1">
+        <div id="scatolaa1">
+            <h1>Stephen Hawking</h1>
+
+        </div> 
+        <p style="margin: 10;padding: 10;" id="testo1"> “Fino a oggi la maggior parte degli scienziati è stata troppo occupata nello sviluppo di nuove teorie che descrivono che cosa sia l'universo per porsi la domanda perché?”</p> 
+        <button onclick="nascondiTesto()">Nascondi Testo</button>
+
+    </div>
+
+
+    <div id="scatola2">
+        <div id="scatolaa2">
+            <h1>Albert Einstein</h1>
+
+
+        </div>
+        <p id="testo2">“Se verrà dimostrato che la mia teoria della relatività è valida, la Germania dirà che sono tedesco e la Francia che sono cittadino del mondo. Se la mia teoria dovesse essere sbagliata, la Francia dirà che sono un tedesco e la Germania che sono un ebreo.”</p> 
+        <button onclick="nascondiTesto1()">Nascondi Testo</button> 
+        
+
+    </div>
+    <div id="scatola3">
+        <div id="scatolaa3">
+            <h1>Nikola Tesla</h1>
+        </div>
+        <p id="testo3">“Gli scienziati odierni hanno sostituito gli esperimenti con la matematica e vagano smarriti equazione dopo equazione e alla fine costruiscono una struttura che non ha relazione con la realtà.”</p> 
+        <button onclick="nascondiTesto2()">Nascondi Testo</button>
+         
+
+    </div>
+    <div id="scatola4">
+        <div id="scatolaa4">
+            <h1>Stephen Toulmin</h1>
+        </div>
+        <p id="testo4">“Senza dubbio, uno scienziato non è necessariamente penalizzato dall'essere un individuo complesso, versatile, eccentrico, con un sacco di interessi extrascientifici. Ma certamente questo non lo aiuta nemmeno un po'.”.</p> 
+        <button onclick="nascondiTesto3()">Nascondi Testo</button> 
+        
+
+    </div>
+    <div id="scatola5">
+        <div id="scatolaa5">
+            <h1>Epicuro</h1>
+        </div>
+        <p id="testo5">“La scienza della natura non forma uomini assidui nel vantare o nel parlare, nemmeno uomini che ostentano la propria educazione, la quale è invidiata dalla massa del popolo; ma piuttosto uomini scevri di iattanza ed autosufficienti, uomini che si occupano dei beni propri, non di quelli del mondo.”</p> 
+        <button onclick="nascondiTesto4()">Nascondi Testo</button> 
+        
+
+    </div>
+    <script>
+        function nascondiTesto() {
+            const testo = document.getElementById("testo1");
+            testo.style.display = "none"; 
+            // Nasconde il testo impostando display a 'none'
+        }
+        function nascondiTesto1() {
+            const testo = document.getElementById("testo2");
+            testo.style.display = "none"; 
+            // Nasconde il testo impostando display a 'none'
+            }
+        function nascondiTesto2() {
+            const testo = document.getElementById("testo3");
+            testo.style.display = "none"; 
+            // Nasconde il testo impostando display a 'none'
+            }
+        function nascondiTesto3() {
+            const testo = document.getElementById("testo4");
+            testo.style.display = "none"; 
+            // Nasconde il testo impostando display a 'none'
+            }
+        function nascondiTesto4() {
+            const testo = document.getElementById("testo5");
+            testo.style.display = "none"; 
+            // Nasconde il testo impostando display a 'none'
+            }
+            
+
+    </script>
+</body>
+</html>
