@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="titolo">Programma calcolo dislivello</h1>
+    <div id="image">
+        <img src="https://img.freepik.com/free-photo/sunlight-through-alp-mountain_400718-7.jpg?t=st=1730910777~exp=1730914377~hmac=6256327791d593e8c33a1a37b2449eca42a633fa5d9af4dcac7d7dcef6240af9&w=740" alt="" style="display: flex; border-radius: 40px;height: 300px;width: 600px;">
+    </div>
+    
+    
+        <div id="es1">
+            <label for="partenza" style="font-weight: bold; font-size: larger;">Punto di partenza</label>
+            <input type="text" name="" id="partenza" style="font-weight: bold; font-size: larger;">
+     
+            <label for="pausa" style="font-weight: bold; font-size: larger;">Punto di pausa</label>
+            <input type="text" name="" id="pausa" style="font-weight: bold; font-size: larger;" >
+        
+            <label for="arrivo" style="font-weight: bold; font-size: larger;">Punto di arrivo</label>
+            <input type="text" name="" id="arrivo" style="font-weight: bold; font-size: larger;">
+            <br>
+            <div id="butn">
+                <button id="c1" onclick="calcola()" style="justify-content: center; justify-items: center;">Calcola il dislivello</button>
+            <p id="out1" style="font-weight: bold; font-size: larger;"> risultato : </p>
+            </div>
+            
+        </div>
+    
+
+    <script>
+        const elementOut=document.getElementById("out1");
+        function calcola(){
+            let v1=document.getElementById("partenza").value;
+            let v2=document.getElementById("pausa").value;
+            let v3=document.getElementById("arrivo").value;
+
+            let dislivello1=v2-v1;
+            let dislivello2=v3-v2;
+            let dislivello3=dislivello1+dislivello2;
+
+        
+
+            elementOut.innerHTML=" il dislovello è "+dislivello3+" "+"metri";
+        }
+    </script>
+    
+</body>
+</html>
