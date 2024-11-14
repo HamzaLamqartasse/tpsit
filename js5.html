@@ -18,11 +18,13 @@
 <script>
     const mioOutput=document.getElementById("out1");
    setInterval(getTime,1)
+
+    let i=0;
   function getTime(){
    let n=0;
-   for(i=0;i<=10;i++){
-   mioOutput.innerHTML+=(i)+""
-   }
+i++;
+   mioOutput.innerHTML+=(i)+" "
+
 
 
   }
