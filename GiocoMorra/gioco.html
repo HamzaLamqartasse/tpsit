@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Carta Sasso Forbice</title>
+    <style>
+        /* Reset e stile di base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #3700ff, #ff0000);
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Contenitore del gioco */
+        #gameContainer {
+            background-color:rgb(98, 38, 155);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            text-align: center;
+        }
+
+        /* Sezione output del gioco */
+        #gameOutput {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #7d388f;
+        }
+
+        /* Immagini scelte */
+        .choice img {
+            width: 120px;
+            height: 120px;
+            margin: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .choice img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Sezione punteggio */
+        #scoreboard {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .score {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #96208c;
+        }
+
+        /* Punteggi e messaggi di vittoria */
+        .winMessage {
+            font-size: 1.4em;
+            color: #7d388f;;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Anima il punteggio per ogni cambio */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .pulseAnimation {
+            animation: pulse 1s ease-in-out;
+        }
+
+        /* Pulsante per reset (se lo vuoi in futuro) */
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="gameContainer">
+        <h1>Gioco Carta Sasso Forbice</h1>
+        <div id="gameOutput">
+            <p><strong>Inizia il Gioco!</strong></p>
+        </div>
+        <div id="scoreboard">
+            <p class="score">Punteggio: Boot 1: 0 - Boot 2: 0</p>
+        </div>
+        
+    </div>
+
+    <script>
+        
+        const choices = ["carta", "sasso", "forbice"];
+        const choiceImages = {
+            carta: "images/carta.png",   
+            sasso: "images/sasso.png",
+            forbice: "images/forbice.png"
+        };
+
+        let boot1Score = 0;
+        let boot2Score = 0;
+
+        
+        function determineWinner(boot1Choice, boot2Choice) {
+            if (boot1Choice === boot2Choice) return "Pareggio!";
+            if (
+                (boot1Choice === 0 && boot2Choice === 2) || // carta batte forbice
+                (boot1Choice === 1 && boot2Choice === 0) || // sasso batte carta
+                (boot1Choice === 2 && boot2Choice === 1)    // forbice batte sasso
+            ) {
+                boot1Score++;
+                return "Boot 1 ha vinto!";
+            } else {
+                boot2Score++;
+                return "Boot 2 ha vinto!";
+            }
+        }
+
+        
+        function playRound() {
+            
+            const boot1Choice = Math.floor(Math.random() * 3);
+            const boot2Choice = Math.floor(Math.random() * 3);
+
+        
+            const result = determineWinner(boot1Choice, boot2Choice);
+
+            
+            document.getElementById("gameOutput").innerHTML = `
+                <div class="choice">
+                    <p><strong>Boot 1 ha scelto:</strong> <img src="${choiceImages[choices[boot1Choice]]}" alt="${choices[boot1Choice]}"></p>
+                    <p><strong>Boot 2 ha scelto:</strong> <img src="${choiceImages[choices[boot2Choice]]}" alt="${choices[boot2Choice]}"></p>
+                </div>
+                <p class="winMessage">${result}</p>
+            `;
+
+            document.getElementById("scoreboard").innerHTML = `
+                <p class="score pulseAnimation">Punteggio: Boot 1: ${boot1Score} - Boot 2: ${boot2Score}</p>
+            `;
+
+      
+            if (boot1Score >= 10) {
+                document.getElementById("gameOutput").innerHTML += "<p><strong>Boot 1 ha vinto il gioco!</strong></p>";
+                clearInterval(gameInterval);
+            } else if (boot2Score >= 10) {
+                document.getElementById("gameOutput").innerHTML += "<p><strong>Boot 2 ha vinto il gioco!</strong></p>";
+                clearInterval(gameInterval);
+            }
+        }
+
+        
+        const gameInterval = setInterval(playRound, 2000);
+
+    </script>
+
+</body>
+</html>
