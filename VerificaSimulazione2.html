@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimulazioneVerifica2</title>
+
+    <style>
+        body{
+            background: radial-gradient(circle, rgb(40, 5, 235), rgb(81, 154, 218));
+        }
+        #output{
+            border: solid rgb(81, 154, 218) 5px;
+            margin: 10;
+            padding: 5px;
+            height: 600px;
+            width: 800px;
+            border-radius: 30px;
+            justify-content: center;
+            background: radial-gradient(circle, rgb(40, 5, 235), rgb(81, 154, 218));
+            
+
+        }
+        p{
+            border: solid rgb(81, 154, 218) 2px;
+            border-radius: 30px;
+            background: radial-gradient(circle, rgb(40, 5, 235), rgb(81, 154, 218));
+        }
+    </style>
+</head>
+<body>
+    <h1>temporizzatore che da un numero casuale tra 1 e 1000    ogni 5 secondi</h1>
+    <div id="output">
+    <h3>numer estratto :</h3>
+    <p id="out1">  </p>
+    <h3>numer estratto e pari o dispari :</h3>
+    <p id="out2">  </p>
+    <h3>il numero estratto è primo  :  </h3>
+    <p id="out3"></p>
+    <h3>il doppio  :  </h3>
+    <p id="out4"></p>
+    <h3>il suo coplemento  :  </h3>
+    <p id="out5"></p>
+    <h3>somma del precedente al attuale  :  </h3> 
+    <p id="out6"></p>
+    <h3>il numero multiplicato per 3.14    :  </h3> 
+    <p id="out7"></p>
+</div>
+
+    
+    <script>
+        let numero
+       
+        setInterval(() => {
+        numero=Math.floor(Math.random() * 1000) + 1;
+        document.getElementById("out1").innerHTML=numero;
+        if(numero%2==0){
+            document.getElementById("out2").innerHTML="pari";
+        }
+        else{
+            document.getElementById("out2").innerHTML="dispari";
+        }
+
+
+        function isPrime(numero) {
+        if (numero <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero% i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    if (isPrime(numero)) {
+                document.getElementById("out3").innerHTML = "sì";
+            } else {
+                document.getElementById("out3").innerHTML = "no";
+            }
+
+            
+    let metaIntera= Math.floor(numero/2);
+
+    let dopio=numero*2;
+    document.getElementById("out4").innerHTML=dopio;
+    let complemento=1000-numero;
+    document.getElementById("out5").innerHTML=complemento;
+
+    let precedente=numero-1;
+    let somma=precedente+numero;
+    document.getElementById("out6").innerHTML=somma;
+
+    let multiplicazione=numero*3.14;
+    document.getElementById("out7").innerHTML=multiplicazione;
+
+
+    
+
+
+
+
+
+
+
+
+        },5000);
+ 
+    </script>
+</body>
+</html>
+
