@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Memory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+        }
+        .btn-square {
+            width: 100px;
+            height: 100px;
+            font-size: 0;
+            margin: 10px;
+        }
+        .btn-light.active {
+            background-color: #f0f0f0;
+        }
+        .highlight {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="text-center">
+    <div class="container mt-5">
+        <h1>Memory Sequenziale</h1>
+        <p>Riproduci la sequenza corretta di pulsanti!</p>
+        <button id="start-btn" class="btn btn-primary mb-4">Inizia Gioco</button>
+        <div id="messaggio" class="mb-3"></div>
+        <h3>Punteggio: <span id="punteggio">0</span></h3>
+        <h3>Livello: <span id="livello">1</span></h3>
+
+        <div class="grid-container">
+            <button class="btn btn-danger btn-square" id="btn1"></button>
+            <button class="btn btn-success btn-square" id="btn2"></button>
+            <button class="btn btn-warning btn-square" id="btn3"></button>
+            <button class="btn btn-info btn-square" id="btn4"></button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let sequenza = [];  
+        let inputUtente = [];
+        let punteggio = 0;  
+        let giocoFinito = false;  
+        let giocoInCorso = false;
+        let livello = 1;
+
+        const pulsanti = [
+            document.getElementById('btn1'),
+            document.getElementById('btn2'),
+            document.getElementById('btn3'),
+            document.getElementById('btn4')
+        ];
+
+        function generaSequenza() {
+            sequenza.push(Math.floor(Math.random() * 4)); 
+        }
+
+        function evidenziaPulsante(indicePulsante) {
+            pulsanti[indicePulsante].classList.add('highlight');
+            setTimeout(() => {
+                pulsanti[indicePulsante].classList.remove('highlight');
+            }, 500);
+        }
+
+        function mostraSequenza() {
+            let indice = 0;
+            const intervallo = setInterval(() => {
+                evidenziaPulsante(sequenza[indice]);
+                indice++;
+                if (indice === sequenza.length) {
+                    clearInterval(intervallo);
+                    giocoInCorso = true;
+                }
+            }, 1000 - (livello - 1) * 200);
+        }
+
+        function controllaInputUtente() {
+            for (let i = 0; i < inputUtente.length; i++) {
+                if (inputUtente[i] !== sequenza[i]) {
+                    giocoFinito = true;  
+                    document.getElementById('messaggio').textContent = "Hai sbagliato! Gioco terminato.";
+                    console.log("Hai sbagliato! Gioco terminato.");
+                    return;
+                }
+            }
+
+            if (inputUtente.length === sequenza.length) {
+                punteggio++;
+                document.getElementById('punteggio').textContent = punteggio;
+                console.log("Bravo! Punteggio: " + punteggio);
+                inputUtente = [];  
+                generaSequenza();  
+                setTimeout(() => {
+                    mostraSequenza();  
+                }, 1000);
+            }
+        }
+
+        function iniziaGioco() {
+            punteggio = 0;
+            sequenza = [];
+            inputUtente = [];
+            giocoFinito = false;
+            giocoInCorso = false;
+            document.getElementById('messaggio').textContent = "";
+
+            generaSequenza();
+            mostraSequenza();
+        }
+
+        function cliccatoPulsante(indicePulsante) {
+            if (giocoFinito || !giocoInCorso) {
+                return;
+            }
+
+            inputUtente.push(indicePulsante);
+            controllaInputUtente();
+        }
+
+        pulsanti.forEach((pulsante, indice) => {
+            pulsante.addEventListener('click', () => cliccatoPulsante(indice));
+        });
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            iniziaGioco();
+        });
+    </script>
+</body>
+</html>
