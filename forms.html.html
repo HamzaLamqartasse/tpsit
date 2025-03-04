@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Modulo</title>
+    <style>
+        body{
+            background-color: rgb(64, 65, 70);
+        }
+        #box{
+            justify-content: center;
+            justify-items: center;
+            height: 400px;
+            width: 900px;
+            background-color: rgb(79, 91, 97);
+            padding: 50px;
+            margin: 160px;
+            margin-right: 150px;
+            border-radius: 30px;
+            box-shadow: 5px black;
+
+        }
+   
+    </style>
+</head>
+<body>
+
+    <div id="box">
+        <h2>HTML Forms</h2>
+        <form id="messaggio">
+        <label for="fname">name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Message:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
+        </form> 
+    </div>
+    <script>
+         document.getElementById("messaggio").addEventListener("submit", function(event) {
+            event.preventDefault(); // Previene il comportamento di invio del modulo
+
+            const nickname = document.getElementById("fname").value;
+            const message = document.getElementById("lname").value;
+            
+            alert(`Invio messaggio\nNickname: ${nickname}\nMessaggio: ${message}`);
+        });
+    </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
