@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Frasi Casuali</title>
+    <style>
+        body{
+            background: linear-gradient(to right, #000000, #4f4c4a);
+        }
+        #scatola{
+            height: 400px;
+            width: 800px;
+            background-color: darkgrey;
+            padding: 50px;
+            margin: 70px;
+            border-radius: 30px;
+            justify-content: center;
+            justify-items: center;
+            justify-self: center;
+            margin-right: 100px;
+        }
+        #buton{
+            border-radius: 30px;
+            border: none;
+            background-color: rgb(145, 141, 141);
+        }
+        h1{
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generatore di Frasi Casuali</h1>
+
+    <div id="scatola">
+    <button id="buton" onclick="generaSoggetto()">Genera Soggetto</button>
+    <button id="buton" onclick="generaVerbo()">Genera Verbo</button>
+    <button id="buton"onclick="generaComplemento()">Genera Complemento</button>
+
+    <h2 id="soggetto"></h2>
+    <h2 id="verbo"></h2>
+    <h2 id="complemento"></h2>
+
+    <h3>Combinazione Completa:</h3>
+    <div id="frase"></div>
+    </div>
+
+    <script>
+        // Array di dati precaricati
+        let soggetti = ["Mario", "Luca", "Giulia", "Anna", "Francesco", "Elena", "Roberto", "Sara", "Davide", "Chiara"];
+        let verbi = ["mangia", "corre", "legge", "scrive", "disegna", "parla", "cammina", "guarda", "ascolta", "gioca"];
+        let complemento = ["una mela", "nel parco", "un libro", "una lettera", "un quadro", "al telefono", "sul marciapiede", "la TV", "musica", "a calcio"];
+
+        // Funzione per ottenere un soggetto casuale
+        function generaSoggetto() {
+            let soggettoCasuale = soggetti[Math.floor(Math.random() * soggetti.length)];
+            document.getElementById("soggetto").innerText = `Soggetto: ${soggettoCasuale}`;
+            aggiornaFrase();
+        }
+
+        // Funzione per ottenere un verbo casuale
+        function generaVerbo() {
+            let verboCasuale = verbi[Math.floor(Math.random() * verbi.length)];
+            document.getElementById("verbo").innerText = `Verbo: ${verboCasuale}`;
+            aggiornaFrase();
+        }
+
+        // Funzione per ottenere un complemento casuale
+        function generaComplemento() {
+            let complementoCasuale = complemento[Math.floor(Math.random() * complemento.length)];
+            document.getElementById("complemento").innerText = `Complemento: ${complementoCasuale}`;
+            aggiornaFrase();
+        }
+
+        // Funzione per aggiornare la frase completa
+        function aggiornaFrase() {
+            let soggetto = document.getElementById("soggetto").innerText.replace("Soggetto: ", "");
+            let verbo = document.getElementById("verbo").innerText.replace("Verbo: ", "");
+            let compl = document.getElementById("complemento").innerText.replace("Complemento: ", "");
+
+            if (soggetto && verbo && compl) {
+                document.getElementById("frase").innerHTML = `${soggetto} ${verbo} ${compl}`;
+            } else {
+                document.getElementById("frase").innerHTML = "Completare la frase con soggetto, verbo e complemento!";
+            }
+        }
+    </script>
+
+</body>
+</html>
