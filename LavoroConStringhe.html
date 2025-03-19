@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio Stringhe</title>
+    <style>
+        body{
+            background: linear-gradient(to right, #6a5acd, #20b2aa, #4682b4);
+        }
+        #scatola{
+            height: 400px;
+            width: 800px;
+            background: linear-gradient(to right, #6a5acd, #20b2aa, #4682b4);
+            padding: 50px;
+            margin: 70px;
+            border-radius: 30px;
+            justify-content: center;
+            justify-items: center;
+            justify-self: center;
+            margin-right: 100px;
+        }
+        #buton{
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(to right, #6a5acd, #20b2aa, #4682b4);
+        }
+        h1{
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Esercizio sulle Stringhe</h1>
+    <div id="scatola">
+    <form id="stringForm">
+        <label id="lebel" for="stringA">Stringa A:</label>
+        <input type="text" id="stringA" required>
+        <br>
+        <label for="stringB">Stringa B:</label>
+        <input type="text" id="stringB" required>
+        <br><br>
+        <button id="buton" type="button" onclick="processStrings()">Elabora Stringhe</button>
+    </form>
+    <h2>Risultati:</h2>
+    <p id="resultLength"></p>
+    <p id="resultReverseA"></p>
+    <p id="resultReverseB"></p>
+    <p id="resultConcatenate"></p>
+    <p id="resultLengthSum"></p>
+</div>
+</body>
+<script>
+    function processStrings() {
+        
+        const stringA = document.getElementById("stringA").value;
+        const stringB = document.getElementById("stringB").value;
+
+        const lengthA = stringA.length;
+        const lengthB = stringB.length;
+
+        document.getElementById("resultLength").innerText = `Lunghezza Stringa A: ${lengthA}, Lunghezza Stringa B: ${lengthB}`;
+        const reverseString = (str) => str.split("").reverse().join("");
+        document.getElementById("resultReverseA").innerText = `Stringa A invertita: ${reverseString(stringA)}`;
+        document.getElementById("resultReverseB").innerText = `Stringa B invertita: ${reverseString(stringB)}`;
+
+        const concatenatedString = stringA + stringB;
+        document.getElementById("resultConcatenate").innerText = `Stringhe concatenate: ${concatenatedString}`;
+
+    
+        const totalLength = lengthA + lengthB;
+        let lengthSumMessage = `Somma delle lunghezze: ${totalLength}`;
+        if (lengthB > 20) {
+            lengthSumMessage += " (B è troppo lunga)";
+        }
+        document.getElementById("resultLengthSum").innerText = lengthSumMessage;
+    }
+</script>
+</html>
