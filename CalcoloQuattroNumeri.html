@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Matematico</title>
+    <style>
+        body{
+            background: linear-gradient(to right, #000000, #4f4c4a);
+        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        label, input { display: block; margin-bottom: 10px; }
+        button { padding: 5px 10px; }
+        #scatola{
+            height: 400px;
+            width: 800px;
+            background-color: darkgrey;
+            padding: 50px;
+            margin: 70px;
+            border-radius: 30px;
+            justify-content: center;
+            justify-items: center;
+            justify-self: center;
+            margin-right: 100px;
+        }
+        h1{
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calcolo con Quattro Numeri</h1>
+    <div id="scatola">
+        <form id="mathForm">
+            <label for="a">Numero A:</label>
+            <input type="number" id="a" name="a" required>
+
+            <label for="b">Numero B:</label>
+            <input type="number" id="b" name="b" required>
+
+            <label for="c">Numero C:</label>
+            <input type="number" id="c" name="c" required>
+
+            <label for="d">Numero D:</label>
+            <input type="number" id="d" name="d" required>
+
+            <button type="button" onclick="calcola()">Calcola</button>
+        </form>
+
+        <h2>Risultati:</h2>
+        <p id="result1"></p>
+        <p id="result2"></p>
+    </div>
+    <script>
+        function calcola() {
+        // Recupera i valori dai campi di input
+        const a = parseFloat(document.getElementById('a').value);
+        const b = parseFloat(document.getElementById('b').value);
+        const c = parseFloat(document.getElementById('c').value);
+        const d = parseFloat(document.getElementById('d').value);
+
+        // Primo risultato: somma dei quattro numeri
+        const risultato1 = a + b + c + d;
+
+        // Secondo risultato: media dei quattro numeri
+        const risultato2 = risultato1 / 4;
+
+        // Visualizza i risultati
+        document.getElementById('result1').innerText = `Primo Risultato (Somma): ${risultato1}`;
+        document.getElementById('result2').innerText = `Secondo Risultato (Media): ${risultato2}`;
+    }
+
+    </script>
+</body>
+</html>
