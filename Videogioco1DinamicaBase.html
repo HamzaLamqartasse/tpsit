@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco del Click</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #000000, #4f4c4a);
+        }
+        #scatola {
+            height: 400px;
+            width: 800px;
+            background-color: darkgrey;
+            padding: 50px;
+            margin: 70px auto;
+            border-radius: 30px;
+            position: relative;
+        }
+        .punto {
+            height: 20px;
+            width: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+        }
+        h1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Gioco del Click</h1>
+        <form id="playerForm" class="mb-4">
+            <input type="text" id="playerName" class="form-control mb-2" placeholder="Nome" required>
+            <input type="email" id="playerEmail" class="form-control mb-2" placeholder="Email" required>
+            <button type="submit" class="btn btn-primary">Inizia Gioco</button>
+        </form>
+        <div id="scatola" class="d-none"></div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('playerForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('playerName').value;
+    const email = document.getElementById('playerEmail').value;
+
+    if (!name || !email) {
+        alert("Inserisci nome ed email!");
+        return;
+    }
+
+    startGame(name, email);
+});
+
+let clickTimes = [];
+let level = 1;
+let maxClicks = 10;
+
+function startGame(name, email) {
+    document.getElementById('playerForm').classList.add('d-none');
+    const scatola = document.getElementById('scatola');
+    scatola.classList.remove('d-none');
+    scatola.innerHTML = ''; // Pulisce eventuali punti precedenti
+    clickTimes = [];
+    generatePoint();
+
+    scatola.addEventListener('click', function (e) {
+        if (e.target.classList.contains('punto')) {
+            recordClick(e.target);
+        }
+    });
+
+    function generatePoint() {
+        if (clickTimes.length >= maxClicks) {
+            endGame(name, email);
+            return;
+        }
+
+        const punto = document.createElement('div');
+        punto.classList.add('punto');
+        punto.style.top = `${Math.random() * 80}%`;
+        punto.style.left = `${Math.random() * 80}%`;
+
+        scatola.appendChild(punto);
+
+        // Punto scompare dopo un tempo che dipende dal livello
+        setTimeout(() => {
+            if (punto.parentNode) punto.remove();
+            generatePoint(); // Genera un nuovo punto
+        }, Math.max(1000 - level * 200, 200)); // Velocità maggiore nei livelli avanzati
+    }
+
+    function recordClick(punto) {
+        clickTimes.push(Date.now());
+        punto.remove();
+        generatePoint();
+    }
+}
+
+function endGame(name, email) {
+    const scatola = document.getElementById('scatola');
+    scatola.classList.add('d-none');
+    const message = document.getElementById('message');
+
+    const totalTime = clickTimes[clickTimes.length - 1] - clickTimes[0];
+    const avgTime = totalTime / clickTimes.length;
+
+    message.innerHTML = `
+        <h2>Risultati:</h2>
+        <p>Nome: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Tempo Totale: ${totalTime} ms</p>
+        <p>Tempo Medio: ${avgTime.toFixed(2)} ms</p>
+    `;
+}
+
+    </script>
+</body>
+</html>
