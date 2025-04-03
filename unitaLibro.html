@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Presentazione sulle reti</title>
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #f4f4f9, #e1e1e1);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-top: 20px;
+        }
+
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            width: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+        }
+
+        .text {
+            width: 50%;
+        }
+
+        .image {
+            width: 40%;
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+        .button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #8eb08f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            height: 40px;
+            width: 190px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>La comunicazione in rete</h1>
+    <a href="provaDiMiniSito.min.html" class="button">ritorna pagina iniziale</a>
+
+
+    <div class="section">
+        <div class="text">
+            <h2>Mittente, destinatario e canale di comunicazione</h2>
+            <p>La comunicazione in rete avviene tra un mittente e un destinatario, utilizzando un canale di comunicazione. Il
+                mittente invia i dati attraverso il canale, che può essere fisico (ad esempio un cavo) o wireless. Il destinatario
+                riceve i dati e li interpreta. Questo processo è fondamentale per garantire un trasferimento efficace delle
+                informazioni.</p>
+        </div>
+        <div class="image">
+            <img src="https://infodoc.altervista.org/wp-content/uploads/2019/05/caratteristiche-trasmissione.png" alt="Mittente e destinatario">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="https://www.ificonsulting.eu/app/uploads/2023/08/topologia_rete_blog.png" alt="Aspetti hardware delle reti">
+        </div>
+        <div class="text">
+            <h2>Aspetti hardware delle reti</h2>
+            <p>Le reti sono composte da vari dispositivi hardware che lavorano insieme per permettere la comunicazione. Questi
+                includono router, switch, cavi, server e computer. Ognuno di questi dispositivi svolge un ruolo fondamentale
+                nell'instradamento e nella gestione dei dati all'interno di una rete.</p>
+        </div>
+       
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Tecnologia trasmissiva</h2>
+            <p>La tecnologia trasmissiva si riferisce ai mezzi e alle tecniche utilizzate per trasferire i dati tra i dispositivi.
+                Tra queste tecnologie troviamo la fibra ottica, i cavi in rame, le onde radio per le reti wireless, e altre
+                forme di trasmissione. Ogni tipo di trasmissione ha vantaggi e limiti, come la velocità, la distanza e la
+                qualità del segnale.</p>
+        </div>
+        <div class="image">
+            <img src="https://infodoc.altervista.org/wp-content/uploads/2019/05/NetworkTopologies.png" alt="Tecnologia trasmissiva">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="https://infodoc.altervista.org/wp-content/uploads/2019/05/tipi-reti.png" alt="Scala dimensionale">
+        </div>
+        <div class="text">
+            <h2>Scala dimensionale</h2>
+            <p>Le reti variano molto in termini di dimensioni. Le reti locali (LAN) sono limitate a piccole aree geografiche, come
+                una casa o un ufficio, mentre le reti geografiche (WAN) coprono vaste aree geografiche, come città o paesi. La
+                scala di una rete influisce sulla sua progettazione, gestione e sui protocolli utilizzati.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Reti locali</h2>
+            <p>Le reti locali (LAN) sono utilizzate per connettere dispositivi all'interno di una piccola area geografica, come
+                una casa o un ufficio. Queste reti sono generalmente veloci e affidabili, permettendo la condivisione di
+                risorse come file e stampanti tra i dispositivi connessi.</p>
+        </div>
+        <div class="image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQuIXs6OfObUPBuxsheKNlDsIeYOrdNuSuA&s" alt="Reti locali">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="https://vitolavecchia.altervista.org/wp-content/uploads/2021/01/Caratteristiche-differenza-e-tipi-di-topologie-di-rete.jpg"
+                alt="Topologia delle reti locali">
+        </div>
+        <div class="text">
+            <h2>Topologia delle reti locali</h2>
+            <p>La topologia di una rete locale descrive come i dispositivi sono fisicamente o logicamente connessi tra loro. Le
+                topologie comuni includono quella a stella, a bus, a anello e a mesh, ognuna con vantaggi e svantaggi in base
+                alle esigenze specifiche della rete.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Reti geografiche</h2>
+            <p>Le reti geografiche (WAN) coprono aree molto più ampie rispetto alle LAN, come intere città, paesi o addirittura
+                continenti. Le WAN sono utilizzate per connettere diverse LAN, consentendo la comunicazione tra dispositivi che
+                si trovano a grande distanza.</p>
+        </div>
+        <div class="image">
+            <img src="https://vitolavecchia.altervista.org/wp-content/uploads/2019/06/Differenza-tra-reti-locali-LAN-reti-metropolitane-MAN-e-reti-geografiche-WAN-960x393.jpg"
+                alt="Reti geografiche">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="https://lh3.googleusercontent.com/proxy/Zs5-Qv-9SGIUv9-jPa4M2ovS4MtzST6AH9hU4WQ-9iPmGUCZtL4ghMoEuDVZICZyXv6RbwxVUA3aUh0sC-CAE3h5ZTvP_8-GcGD_DZXx0NdXIb7EAiMq24Os"
+                alt="Reti wireless">
+        </div>
+        <div class="text">
+            <h2>Reti wireless</h2>
+            <p>Le reti wireless permettono la connessione di dispositivi senza l'uso di cavi fisici. Utilizzano onde radio per
+                trasmettere i dati. Tecnologie come Wi-Fi, Bluetooth e reti mobili sono esempi di reti wireless che offrono una
+                grande flessibilità e mobilità.</p>
+        </div>
+        
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>I protocolli (generalità)</h2>
+            <p>I protocolli sono un insieme di regole che definiscono come i dispositivi comunicano all'interno di una rete. Alcuni
+                protocolli comuni sono TCP/IP, HTTP, FTP, e SMTP. Ogni protocollo ha uno scopo specifico, come la gestione
+                della trasmissione dei dati, la visualizzazione di pagine web o l'invio di email.</p>
+        </div>
+        <div class="image">
+            <img src="https://www.programmiamo.altervista.org/internet/immagini/img8.jpg" alt="Protocolli di rete">
+        </div>
+    </div>
+
+    <div class="section">
+       
+        <div class="image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP-16WI3lQroxF-2XsB6u1024Ex4Cu2UMZKg&s" alt="Packet switching">
+        </div>
+        <div class="text">
+            <h2>Packet switching</h2>
+            <p>Il packet switching è una tecnica utilizzata per trasmettere i dati in piccole unità chiamate pacchetti. Ogni pacchetto
+                può prendere una via diversa per raggiungere il destinatario, il che rende la rete più flessibile e resistente ai
+                guasti rispetto ad altre tecniche di trasmissione.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Segnali analogici e digitali</h2>
+            <p>I segnali analogici e digitali sono due tipi di segnali utilizzati per la trasmissione dei dati. I segnali analogici
+                sono continui, mentre i segnali digitali sono discreti, rappresentando i dati con sequenze di 0 e 1. Le reti moderne
+                tendono a usare segnali digitali per la trasmissione dei dati.</p>
+        </div>
+        <div class="image">
+            <img src="https://vitolavecchia.altervista.org/wp-content/uploads/2020/12/Differenza-tra-segnale-analogico-e-digitale-in-telecomunicazioni.jpg"
+                alt="Segnali analogici e digitali">
+        </div>
+    </div>
+
+    <div class="section">
+       
+        <div class="image">
+            <img src="https://www.apav.it/mascella/images/0_tras2.jpg" alt="Trasmissione di segnali elettrici via cavo">
+        </div>
+        <div class="text">
+            <h2>Trasmissione di segnali elettrici via cavo</h2>
+            <p>La trasmissione di segnali elettrici attraverso cavi è uno dei metodi più comuni per il trasferimento dei dati nelle
+                reti cablate. I segnali vengono inviati tramite cavi in rame o fibra ottica, a seconda della tecnologia di rete
+                utilizzata.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Cavo coassiale e doppino (twisted pair)</h2>
+            <p>Il cavo coassiale e il doppino intrecciato (twisted pair) sono due tipi di cavi usati per la trasmissione di dati.
+                Il cavo coassiale è composto da un conduttore centrale, una schermatura e una guaina isolante. Il doppino intrecciato
+                è costituito da due fili di rame intrecciati, utilizzato principalmente per le comunicazioni telefoniche e le
+                reti Ethernet.</p>
+        </div>
+        <div class="image">
+            <img src="https://it.cobtel.com/Content/uploads/2023891096/202307291935391d9cf02fde544490bac15f9550604c44.jpg?size=580x0"
+                alt="Cavo coassiale e doppino">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="image">
+            <img src="https://www.emmegiricambi.it/getmedia/147252e9-f0b3-45a6-b4fb-6999edd09ed1/Schema-rip-cord-drain-wire.aspx?width=600&height=395"
+                alt="Schermatura dei cavi">
+        </div>
+        <div class="text">
+            <h2>La schermatura dei cavi</h2>
+            <p>La schermatura dei cavi è una tecnica utilizzata per proteggere i segnali elettrici dalla interferenza elettromagnetica
+                (EMI). Le reti che utilizzano cavi schermati garantiscono una maggiore qualità del segnale, soprattutto in ambienti
+                con molte fonti di interferenza, come i dati in fibra ottica o Ethernet.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="text">
+            <h2>Codifica Manchester</h2>
+            <p>La codifica Manchester è una tecnica di codifica dei segnali usata per garantire la sincronizzazione tra il
+                trasmettitore e il ricevitore. In questa tecnica, ogni bit di dati è rappresentato da una transizione a metà
+                del periodo di tempo, permettendo di distinguere chiaramente i dati senza errori di sincronizzazione.</p>
+        </div>
+        <div class="image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8fYV4_CON5HaqMf0Srp8ypqFJO0Uo75OJug&s" alt="Codifica Manchester"> </div> </div>
+        </div>
+    </div>
+</body> 
+</html>
