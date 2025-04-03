@@ -4,43 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Presentazione sulle reti</title>
+    <title>Pagina Indice</title>
     <style>
         body {
             font-family: Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #f4f4f9, #e1e1e1);
+            background: linear-gradient(80deg, #2e3c8d, #32a852); 
             color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-        /* Navbar */
-        nav {
-            background-color: #333;
-            padding: 10px;
+        h1 {
             text-align: center;
+            margin-top: 20px;
+            color: #fff; 
         }
 
-        nav a {
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
-        }
-
-        nav a:hover {
-            background-color: #575757;
-        }
-
-        /* Sezione iniziale con immagini rettangolari e bottoni centrati */
         .intro-section {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 50px;
             margin-top: 50px;
-            text-align: center;
         }
 
         .intro-section .image-container {
@@ -48,9 +38,10 @@
         }
 
         .intro-section img {
-            width: 350px; /* Larghezza maggiore per forma rettangolare */
-            height: 200px; /* Altezza inferiore per mantenere la forma rettangolare */
+            width: 500px; 
+            height: 300px; 
             border-radius: 10px;
+            object-fit: cover;
         }
 
         .intro-section .button {
@@ -63,110 +54,26 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            text-align: center;
         }
 
         .intro-section .button:hover {
             background-color: #45a049;
-        }
-
-        /* Style per le sections */
-        h1 {
-            text-align: center;
-            color: #444;
-            margin-top: 20px;
-        }
-
-        .section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            width: 80%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
-        }
-
-        .text {
-            width: 50%;
-        }
-
-        .image {
-            width: 40%;
-        }
-
-        .image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 30px;
-        }
-
-        h2 {
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        p {
-            line-height: 1.6;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <a href="#introduzione">Introduzione</a>
-        <a href="#section1">Sezione 1</a>
-        <a href="#section2">Sezione 2</a>
-        <a href="#section3">Sezione 3</a>
-        <!-- Aggiungi altri link per le altre sezioni -->
-    </nav>
-
-    <!-- Sezione iniziale con immagini rettangolari e bottoni centrati -->
-    <div class="intro-section" id="introduzione">
+    <h1>Minisito intro reti e cavi</h1>
+    <div class="intro-section">
         <div class="image-container">
             <img src="https://www.robadainformatici.it/wp-content/uploads/2023/07/Rischi-delle-reti-pubbliche-1200x675.webp" alt="Unità libro">
-            <a href="#" class="button">Unità libro</a>
+            <a href="#unità-libro" class="button">Unità libro</a>
         </div>
         <div class="image-container">
             <img src="https://i.ytimg.com/vi/8X3CaUJhxpc/maxresdefault.jpg" alt="Creazione di un cavo">
-            <a href="#" class="button">Creazione di un cavo</a>
-        </div>
-    </div>
-
-    <!-- Sezioni aggiuntive come nel tuo codice originale -->
-    <h1>La comunicazione in rete</h1>
-
-    <div class="section" id="section1">
-        <div class="text">
-            <h2>Mittente, destinatario e canale di comunicazione</h2>
-            <p>La comunicazione in rete avviene tra un mittente e un destinatario, utilizzando un canale di comunicazione. Il mittente invia i dati attraverso il canale, che può essere fisico (ad esempio un cavo) o wireless. Il destinatario riceve i dati e li interpreta. Questo processo è fondamentale per garantire un trasferimento efficace delle informazioni.</p>
-        </div>
-        <div class="image">
-            <img src="https://infodoc.altervista.org/wp-content/uploads/2019/05/caratteristiche-trasmissione.png" alt="Mittente e destinatario">
-        </div>
-    </div>
-
-    <div class="section" id="section2">
-        <div class="text">
-            <h2>Aspetti hardware delle reti</h2>
-            <p>Le reti sono composte da vari dispositivi hardware che lavorano insieme per permettere la comunicazione. Questi includono router, switch, cavi, server e computer. Ognuno di questi dispositivi svolge un ruolo fondamentale nell'instradamento e nella gestione dei dati all'interno di una rete.</p>
-        </div>
-        <div class="image">
-            <img src="https://www.ificonsulting.eu/app/uploads/2023/08/topologia_rete_blog.png" alt="Aspetti hardware delle reti">
-        </div>
-    </div>
-
-    <div class="section" id="section3">
-        <div class="text">
-            <h2>Tecnologia trasmissiva</h2>
-            <p>La tecnologia trasmissiva si riferisce ai mezzi e alle tecniche utilizzate per trasferire i dati tra i dispositivi. Tra queste tecnologie troviamo la fibra ottica, i cavi in rame, le onde radio per le reti wireless, e altre forme di trasmissione. Ogni tipo di trasmissione ha vantaggi e limiti, come la velocità, la distanza e la qualità del segnale.</p>
-        </div>
-        <div class="image">
-            <img src="https://infodoc.altervista.org/wp-content/uploads/2019/05/NetworkTopologies.png" alt="Tecnologia trasmissiva">
+            <a href="#creazione-cavo" class="button">Creazione di un cavo</a>
         </div>
     </div>
 
