@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <p id="mioOut1"></p>
+        <p id="mioOut2"></p>
+        <p id="mioOut3"></p>
+    </div>
+
+    <script>
+        const mioArrayCasuali = [];
+        const arrayRapporti = [];
+        
+        function generaNumeriCasuale() {
+            const casuale = Math.random();
+            console.log(casuale);
+            document.getElementById("mioOut1").innerHTML = casuale;
+            mioArrayCasuali.push(casuale);
+            document.getElementById("mioOut2").innerHTML = mioArrayCasuali;
+
+            
+            const len = mioArrayCasuali.length;
+            if (len > 1) {
+               
+                const n = mioArrayCasuali[len - 1] / mioArrayCasuali[len - 2];
+                arrayRapporti.push(n);
+                document.getElementById("mioOut3").innerHTML = arrayRapporti;
+            }
+            if(len %50 ===0)
+                calcolaMediaArrayCasuali()
+        }
+
+        setInterval(generaNumeriCasuale, 500); 
+
+
+        function calcolaMediaArrayCasuali() {
+            let somma= 0;
+            for(let i=0;i<mioArrayCasuali.length-1;i++){
+                    somma=somma+mioArrayCasuali(i);
+                    
+                    let media=0;
+                    
+                    media=somma/mioArrayCasuali.length;
+                    return media;
+            }
+            
+        }
+    </script>
+</body>
+</html>
