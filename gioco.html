@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="iso-8859-1" />
+    <title>Gioco del Puzzle</title>
+    <style>
+        /* Stile generale per centrare tutto */
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* Colore di sfondo piacevole */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #0693c8;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        .celle {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 2em;
+            font-weight: bold;
+            border: 3px solid #0693c8;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .vuota {
+            background-color: #5b9be1;
+        }
+
+        .piena {
+            background-color: #aecdf0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background-color: #0693c8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #045a89;
+        }
+    </style>
+    <script>
+        function init() {
+            const celle = document.querySelectorAll("#puzzle td");
+            const numeri = [...Array(9).keys()].map(n => n + 1); // Numeri da 1 a 9
+            numeri.forEach((num, idx) => {
+                celle[idx].textContent = num;
+                celle[idx].className = "celle piena";
+                celle[idx].onclick = () => sposta(celle, idx);
+            });
+            celle[8].textContent = ""; // Ultima cella vuota
+            celle[8].className = "celle vuota";
+        }
+
+        function sposta(celle, indice) {
+            const posizioniVicine = [indice - 3, indice + 3, indice - 1, indice + 1];
+            const vuota = posizioniVicine.find(pos => pos >= 0 && pos < celle.length && celle[pos].textContent === "");
+            if (vuota !== undefined) {
+                celle[vuota].textContent = celle[indice].textContent;
+                celle[vuota].className = "celle piena";
+                celle[indice].textContent = "";
+                celle[indice].className = "celle vuota";
+            }
+        }
+
+        function mescola() {
+            const celle = document.querySelectorAll("#puzzle td");
+            const numeri = [...Array(8).keys().map(n => n + 1), ""]; // Numeri da 1 a 8 e vuoto
+            numeri.sort(() => Math.random() - 0.5); // Ordine casuale
+            celle.forEach((cella, idx) => {
+                cella.textContent = numeri[idx];
+                cella.className = numeri[idx] === "" ? "celle vuota" : "celle piena";
+            });
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h1>Gioco del Puzzle</h1>
+    <table id="puzzle">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+    <button onclick="mescola()">Mescola</button>
+</body>
+</html>
