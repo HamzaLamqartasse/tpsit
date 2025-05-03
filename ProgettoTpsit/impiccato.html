@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Gioco dell'Impiccato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            font-size: 24px;
+            text-align: center;
+            padding: 10px;
+            width: 250px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .letters a {
+            font-size: 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .letters a:hover {
+            color: #0056b3;
+        }
+        .reset-link {
+            font-size: 22px;
+            margin-top: 20px;
+            display: block;
+            color: #007BFF;
+        }
+        .reset-link:hover {
+            color: #0056b3;
+        }
+        .tentativi-sbagliati {
+            font-size: 20px;
+            margin-top: 10px;
+            color: red;
+        }
+        .impiccato {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 24px;
+            color: #ff4500;
+        }
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+        
+    </style>
+    <script>
+        let parole = ["CANE", "GATTO", "CASA", "SOLE", "LUNA"];
+        let parolaDaIndovinare = "";
+        let parolaVisualizzata = "";
+        let lettereUsate = "";
+        let tentativiSbagliati = 0;
+        let giocoAttivo = true;
+
+        const impiccatoGrafico = [
+            "      ------\n      |    |\n           |\n           |\n           |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n           |\n           |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n      |    |\n           |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n     /|    |\n           |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n     /|\\   |\n           |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n     /|\\   |\n     /     |\n           |\n           |\n    -----------",
+            "      ------\n      |    |\n      O    |\n     /|\\   |\n     / \\   |\n           |\n           |\n    -----------"
+        ];
+
+        function selezionaParola() {
+            const indice = Math.floor(Math.random() * parole.length);
+            parolaDaIndovinare = parole[indice];
+            parolaVisualizzata = "#".repeat(parolaDaIndovinare.length);
+            lettereUsate = "";
+            tentativiSbagliati = 0;
+            giocoAttivo = true;
+
+            document.getElementById("parolaVisualizzata").value = parolaVisualizzata;
+            document.getElementById("lettereUsate").value = "";
+            document.getElementById("tentativiSbagliati").innerText = "Tentativi sbagliati: 0/7";
+            document.getElementById("impiccato").innerText = impiccatoGrafico[0];
+        }
+
+        function selezionaLettera(lettera) {
+            if (giocoAttivo === false) return;
+            if (lettereUsate.includes(lettera)) return;
+
+            lettereUsate += lettera;
+            document.getElementById("lettereUsate").value = lettereUsate;
+
+            if (parolaDaIndovinare.includes(lettera)) {
+                let nuovaParola = "";
+                for (let i = 0; i < parolaDaIndovinare.length; i++) {
+                    nuovaParola += parolaDaIndovinare[i] === lettera ? lettera : parolaVisualizzata[i];
+                }
+                parolaVisualizzata = nuovaParola;
+                document.getElementById("parolaVisualizzata").value = parolaVisualizzata;
+
+                if (parolaVisualizzata.indexOf("#") === -1) {
+                    alert("Hai vinto!");
+                    giocoAttivo = false;
+                }
+            } else {
+                tentativiSbagliati++;
+                document.getElementById("tentativiSbagliati").innerText = `Tentativi sbagliati: ${tentativiSbagliati}/7`;
+                document.getElementById("impiccato").innerText = impiccatoGrafico[Math.min(tentativiSbagliati, 6)];
+
+                if (tentativiSbagliati === 7) {
+                    alert("Hai perso! La parola era: " + parolaDaIndovinare);
+                    giocoAttivo = false;
+                }
+            }
+        }
+
+        function resetta() {
+            selezionaParola();
+        }
+
+        window.onload = selezionaParola;
+    </script>
+</head>
+<body>
+    <div class="game-container">
+        <h2>Gioco dell'Impiccato</h2>
+        <form name="gioco">
+            <p>Parola: <input id="parolaVisualizzata" type="text" readonly><br>
+            Lettere: <input id="lettereUsate" type="text" readonly></p>
+        </form>
+
+        <div class="letters">
+            <a href="javascript:selezionaLettera('A');">A</a> |
+            <a href="javascript:selezionaLettera('B');">B</a> |
+            <a href="javascript:selezionaLettera('C');">C</a> |
+            <a href="javascript:selezionaLettera('D');">D</a> |
+            <a href="javascript:selezionaLettera('E');">E</a> |
+            <a href="javascript:selezionaLettera('F');">F</a> |
+            <a href="javascript:selezionaLettera('G');">G</a> |
+            <a href="javascript:selezionaLettera('H');">H</a> |
+            <a href="javascript:selezionaLettera('I');">I</a> |
+            <a href="javascript:selezionaLettera('J');">J</a> |
+            <a href="javascript:selezionaLettera('K');">K</a> |
+            <a href="javascript:selezionaLettera('L');">L</a><br>
+            <a href="javascript:selezionaLettera('M');">M</a> |
+            <a href="javascript:selezionaLettera('N');">N</a> |
+            <a href="javascript:selezionaLettera('O');">O</a> |
+            <a href="javascript:selezionaLettera('P');">P</a> |
+            <a href="javascript:selezionaLettera('Q');">Q</a> |
+            <a href="javascript:selezionaLettera('R');">R</a> |
+            <a href="javascript:selezionaLettera('S');">S</a> |
+            <a href="javascript:selezionaLettera('T');">T</a> |
+            <a href="javascript:selezionaLettera('U');">U</a> |
+            <a href="javascript:selezionaLettera('V');">V</a> |
+            <a href="javascript:selezionaLettera('W');">W</a> |
+            <a href="javascript:selezionaLettera('X');">X</a> |
+            <a href="javascript:selezionaLettera('Y');">Y</a> |
+            <a href="javascript:selezionaLettera('Z');">Z</a>
+        </div>
+
+        <div id="tentativiSbagliati" class="tentativi-sbagliati">Tentativi sbagliati: 0/7</div>
+
+        <pre id="impiccato" class="impiccato">
+              ------
+              |    |
+                   |
+                   |
+                   |
+                   |
+                   |
+            -----------
+        </pre>
+
+        <p><a class="reset-link" href="javascript:resetta()">Parti/Ricomincia</a></p>
+    </div>
+    <a href="index.html" class="home-button">Torna alla Home</a>
+
+</body>
+</html>

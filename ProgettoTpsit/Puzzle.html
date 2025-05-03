@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="iso-8859-1">
+    <title>Puzzle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #eef6fb;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #0077b6;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 2em;
+            border: 2px solid #0077b6;
+            cursor: pointer;
+            background-color: #a9d6e5;
+        }
+
+        .vuota {
+            background-color: #61a5c2;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f87;
+        }
+
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+
+    <script>
+        function init() {
+            var celle = document.getElementsByTagName("td");
+            var numeri = [];
+            for (var i = 1; i <= 8; i++) {
+                numeri.push(i);
+            }
+            numeri.push(""); // Cella vuota
+
+            for (var j = 0; j < celle.length; j++) {
+                celle[j].textContent = numeri[j];
+                aggiornaClasse(celle[j]);
+                celle[j].onclick = function () {
+                    muovi(this);
+                };
+            }
+        }
+
+        function muovi(cellaCliccata) {
+            var celle = document.getElementsByTagName("td");
+            var indiceCliccato = trovaIndice(celle, cellaCliccata);
+
+            // Calcola la posizione delle celle adiacenti
+            var sopra = indiceCliccato - 3;
+            var sotto = indiceCliccato + 3;
+            var sinistra = indiceCliccato - 1;
+            var destra = indiceCliccato + 1;
+
+            // Prova a spostare la cella cliccata in una posizione vuota adiacente
+            if (sopra >= 0 && celle[sopra].textContent === "") {
+                scambia(cellaCliccata, celle[sopra]);
+            } else if (sotto < 9 && celle[sotto].textContent === "") {
+                scambia(cellaCliccata, celle[sotto]);
+            } else if (indiceCliccato % 3 !== 0 && celle[sinistra].textContent === "") {
+                scambia(cellaCliccata, celle[sinistra]);
+            } else if ((indiceCliccato + 1) % 3 !== 0 && celle[destra].textContent === "") {
+                scambia(cellaCliccata, celle[destra]);
+            }
+
+            // Dopo lo spostamento, controlla se il puzzle è stato risolto
+            controllaVittoria();
+        }
+
+        function trovaIndice(celle, cella) {
+            for (var i = 0; i < celle.length; i++) {
+                if (celle[i] === cella) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function scambia(cella1, cella2) {
+            var temp = cella1.textContent;
+            cella1.textContent = cella2.textContent;
+            cella2.textContent = temp;
+
+            aggiornaClasse(cella1);
+            aggiornaClasse(cella2);
+        }
+
+        function aggiornaClasse(cella) {
+            if (cella.textContent === "") {
+                cella.className = "vuota";
+            } else {
+                cella.className = "";
+            }
+        }
+
+        function mescola() {
+            var celle = document.getElementsByTagName("td");
+            var numeri = [];
+
+            for (var i = 1; i <= 8; i++) {
+                numeri.push(i);
+            }
+            numeri.push("");
+
+            for (var i = numeri.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = numeri[i];
+                numeri[i] = numeri[j];
+                numeri[j] = temp;
+            }
+
+            for (var k = 0; k < celle.length; k++) {
+                celle[k].textContent = numeri[k];
+                aggiornaClasse(celle[k]);
+            }
+        }
+
+        function controllaVittoria() {
+            var celle = document.getElementsByTagName("td");
+            var vincente = ["1", "2", "3", "4", "5", "6", "7", "8", ""];
+
+            for (var i = 0; i < celle.length; i++) {
+                if (celle[i].textContent !== vincente[i]) {
+                    return false;
+                }
+            }
+
+            alert("Complimenti! Hai risolto il puzzle! 🎉");
+            return true;
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <h1>Gioco del Puzzle</h1>
+    <table>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+    </table>
+    <button onclick="mescola()">Mescola</button>
+
+    <a href="index.html" class="home-button">Torna alla Home</a>
+
+</body>
+</html>
