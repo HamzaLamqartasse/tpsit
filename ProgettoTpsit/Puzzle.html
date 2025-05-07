@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="iso-8859-1">
+    <meta charset="UTF-8">
     <title>Puzzle</title>
     <style>
         body {
@@ -22,7 +22,7 @@
         }
 
         table {
-            border-collapse: collapse;
+            border-collapse: collapse;    /* Elimina spazi tra le celle */
         }
 
         td {
@@ -37,7 +37,7 @@
         }
 
         .vuota {
-            background-color: #61a5c2;
+            background-color: #61a5c2;     /* Sfondo diverso per la cella vuota */
         }
 
         button {
@@ -86,7 +86,7 @@
             for (var j = 0; j < celle.length; j++) {
                 celle[j].textContent = numeri[j];
                 aggiornaClasse(celle[j]);
-                celle[j].onclick = function () {
+                celle[j].onclick = function () {         // ogni cella Imposta evento onclick per
                     muovi(this);
                 };
             }
@@ -94,7 +94,7 @@
 
         function muovi(cellaCliccata) {
             var celle = document.getElementsByTagName("td");
-            var indiceCliccato = trovaIndice(celle, cellaCliccata);
+            var indiceCliccato = trovaIndice(celle, cellaCliccata);    //Trova l’indice (0-8) della cella cliccata.
 
             // Calcola la posizione delle celle adiacenti
             var sopra = indiceCliccato - 3;
@@ -137,7 +137,7 @@
 
         function aggiornaClasse(cella) {
             if (cella.textContent === "") {
-                cella.className = "vuota";
+                cella.className = "vuota";      //Se la cella è vuota, usa la classe CSS "vuota" per cambiarne il colore.
             } else {
                 cella.className = "";
             }
