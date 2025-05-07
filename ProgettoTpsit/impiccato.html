@@ -79,29 +79,7 @@
         
     </style>
     <script>
-        let parole = ["gatto", "cane", "fiore", "sole", "luna", "mare", "vento", "neve", "prato", "fiume",
-  "scuola", "libro", "penna", "banco", "sedia", "tavolo", "porta", "finestra", "vetro", "muro",
-  "zaino", "gioco", "matita", "quadro", "foglio", "palla", "piede", "mano", "testa", "naso",
-  "occhio", "bocca", "dente", "lingua", "cuore", "mente", "sogno", "notte", "giorno", "tempo",
-  "orologio", "telefono", "computer", "tastiera", "mouse", "video", "foto", "camera", "lampada", "libreria",
-  "bicicletta", "monopattino", "camion", "auto", "treno", "aereo", "barca", "nave", "elicottero", "ponte",
-  "strada", "viale", "via", "piazza", "citta", "paese", "villaggio", "montagna", "collina", "bosco",
-  "albero", "foglia", "ramo", "radice", "terra", "sabbia", "sasso", "roccia", "ghiaccio", "fuoco",
-  "fiamma", "cielo", "nuvola", "pioggia", "grandine", "tuono", "fulmine", "arcobaleno", "vento", "brezza",
-  "maretta", "onda", "scoglio", "spiaggia", "conchiglia", "pescatore", "pesce", "barca", "remo", "vela",
-  "museo", "teatro", "cinema", "film", "attore", "attrice", "regista", "scena", "copione", "palco",
-  "scuola", "maestro", "professore", "lezione", "studente", "classe", "zaino", "gesso", "lavagna", "campanella",
-  "ospedale", "dottore", "infermiera", "medico", "paziente", "cura", "pillola", "medicina", "cerotto", "siringa",
-  "sport", "calcio", "basket", "tennis", "pallone", "rete", "campo", "giocatore", "squadra", "allenatore",
-  "musica", "nota", "melodia", "canzone", "voce", "chitarra", "pianoforte", "batteria", "violino", "flauto",
-  "danza", "ballo", "ritmo", "passo", "coreografia", "palcoscenico", "pubblico", "applauso", "spettacolo", "evento",
-  "cibo", "pane", "pasta", "riso", "carne", "pesce", "uovo", "formaggio", "latte", "zucchero",
-  "sale", "pepe", "olio", "burro", "acqua", "vino", "birra", "torta", "dolce", "gelato",
-  "viaggio", "valigia", "treno", "biglietto", "hotel", "albergo", "camera", "guida", "mappa", "turista",
-  "lingua", "parola", "lettera", "frase", "pagina", "libro", "racconto", "romanzo", "poesia", "scrittore",
-  "pittore", "quadro", "pennello", "tela", "colore", "galleria", "mostra", "arte", "scultura", "statua",
-  "robot", "ingegnere", "scienza", "chimica", "fisica", "matematica", "logica", "codice", "programma", "rete",
-  "web", "sito", "pagina", "link", "click", "chat", "email", "server", "account", "password"];
+        let parole = ["CANE", "GATTO", "CASA", "SOLE", "LUNA"];
         let parolaDaIndovinare = "";
         let parolaVisualizzata = "";
         let lettereUsate = "";
@@ -134,17 +112,21 @@
 
         function selezionaLettera(lettera) {
             if (giocoAttivo === false) return;
-            if (lettereUsate.includes(lettera)) return;
+            if (lettereUsate.includes(lettera)) return; //Se la lettera è già stata cliccata
 
             lettereUsate += lettera;
             document.getElementById("lettereUsate").value = lettereUsate;
 
-            if (parolaDaIndovinare.includes(lettera)) {
+            if (parolaDaIndovinare.includes(lettera)) {      //Verifica se la lettera è corretta,
                 let nuovaParola = "";
                 for (let i = 0; i < parolaDaIndovinare.length; i++) {
-                    nuovaParola += parolaDaIndovinare[i] === lettera ? lettera : parolaVisualizzata[i];
+                    if (parolaDaIndovinare[i] === lettera) {
+                        nuovaParola += lettera;                                
+                    } else {
+                        nuovaParola += parolaVisualizzata[i];
+                    }
                 }
-                parolaVisualizzata = nuovaParola;
+                parolaVisualizzata = nuovaParola; // mostra la parola aggiornata con le nuove lettere corrette. 
                 document.getElementById("parolaVisualizzata").value = parolaVisualizzata;
 
                 if (parolaVisualizzata.indexOf("#") === -1) {
